@@ -1,6 +1,13 @@
 <x-admin-master>
     @section('content')
         <h1>All Posts</h1>
+
+        @if(Session::has('message'))
+
+{{--            <div class="alert alert-success text-center">{{Session::get('message')}}</div>--}}
+{{--                        OR--}}
+            <div class="alert alert-success text-center">{{session('message')}}</div>
+        @endif
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
@@ -16,6 +23,7 @@
                             <th>Image</th>
                             <th>Created At</th>
                             <th>Updated At</th>
+                            <th>Delete</th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -26,6 +34,7 @@
                             <th>Image</th>
                             <th>Created At</th>
                             <th>Updated At</th>
+                            <th>Delete</th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -39,6 +48,13 @@
                                 </td>
                                 <td>{{$post->created_at->diffForHumans()}}</td>
                                 <td>{{$post->updated_at->diffForHumans()}}</td>
+                                <td>
+                                    <form method="post" action="{{route('post.destroy', $post->id)}}" enctype="multipart/form-data">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -49,12 +49,14 @@
                                 <td>{{$post->created_at->diffForHumans()}}</td>
                                 <td>{{$post->updated_at->diffForHumans()}}</td>
                                 <td class="d-flex justify-content-around">
+{{--                                    @can('view', $post)--}}
                                     <a href="{{route('post.edit', $post->id)}}" class="btn small btn-warning"><i class="fas fa-edit small"></i></a>
                                     <form method="post" action="{{route('post.destroy', $post->id)}}" enctype="multipart/form-data">
                                         @csrf
                                         @method('DELETE')
                                         <button class="small btn btn-danger"><i class="fas fa-trash-alt small"></i></button>
                                     </form>
+{{--                                    @endcan--}}
                                 </td>
                             </tr>
                             @endforeach

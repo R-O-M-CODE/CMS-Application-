@@ -42,7 +42,11 @@ class PostController extends Controller
         return back();
     }
     public function edit(Post $post){
-        return view('admin.posts.edit', ['post' => $post]);
+        if(auth()->user()->can('view', $post)){
+            return view('admin.posts.edit', ['post' => $post]);
+        }else{
+            return back();
+        }
     }
     public function update(Post $post){
         $inputs = request()->validate([
@@ -59,6 +63,7 @@ class PostController extends Controller
 
 //        auth()->user()->posts()->save($post); Saves and set the publiser to user
 
+        $this->authorize('update', $post);
         $post->update();
 
         Session::flash('message', 'Post Updated Successfully');

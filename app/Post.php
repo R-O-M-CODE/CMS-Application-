@@ -8,6 +8,11 @@ class Post extends Model
 {
     //
     protected $guarded = [];
+
+    public static function auth()
+    {
+    }
+
     public function user(){
         return $this->belongsTo(User::class);
     }

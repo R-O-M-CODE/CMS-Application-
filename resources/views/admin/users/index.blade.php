@@ -1,6 +1,9 @@
 <x-admin-master>
     @section('content')
         <h1>Users</h1>
+        @if(Session::has('deleted'))
+            <div class="alert alert-success">{{session('deleted')}}</div>
+        @endif
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">All Users</h6>
@@ -46,8 +49,8 @@
                                 <td>{{$user->updated_at->diffForHumans()}}</td>
                                 <td class="d-flex justify-content-around">
                                     {{--                                    @can('view', $post)--}}
-                                    <a href="{{route('post.edit', $user->id)}}" class="btn small btn-warning"><i class="fas fa-edit small"></i></a>
-                                    <form method="post" action="{{route('post.destroy', $user->id)}}" enctype="multipart/form-data">
+{{--                                    <a href="{{route('post.edit', $user->id)}}" class="btn small btn-warning"><i class="fas fa-edit small"></i></a>--}}
+                                    <form method="post" action="{{route('users.destroy', $user->id)}}" enctype="multipart/form-data">
                                         @csrf
                                         @method('DELETE')
                                         <button class="small btn btn-danger"><i class="fas fa-trash-alt small"></i></button>

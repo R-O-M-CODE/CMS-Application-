@@ -20,4 +20,6 @@ Route::middleware('auth')->group(function (){
 
     Route::get('/admin/users/{user}/profile', 'UserController@show')->name('user.profile.show');
     Route::patch('/admin/users/{user}/profile', 'UserController@update')->name('user.profile.update');
+
+    Route::get('/admin/users', 'UserController@index')->name('users.index');
 });

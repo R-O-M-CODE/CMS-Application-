@@ -17,12 +17,12 @@ class PostController extends Controller
         return view('blog-post', ['post' => $post]);
     }
     public function create(){
-        $this->authorize('store', Post::class);
+        $this->authorize('create', Post::class);
         return view('admin.posts.create');
     }
     public function store(){
 
-        $this->authorize('store', Post::class);
+        $this->authorize('create', Post::class);
         $inputs = request()->validate([
             'title' => 'required|min:8|max:255',
             'post_image' => 'mimes:jpeg,png,gif',

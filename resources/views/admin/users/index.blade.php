@@ -48,8 +48,8 @@
                                 <td>{{$user->created_at->diffForHumans()}}</td>
                                 <td>{{$user->updated_at->diffForHumans()}}</td>
                                 <td class="d-flex justify-content-around">
-                                    {{--                                    @can('view', $post)--}}
-{{--                                    <a href="{{route('post.edit', $user->id)}}" class="btn small btn-warning"><i class="fas fa-edit small"></i></a>--}}
+{{--                                                                        @can('view', $post)--}}
+                                    <a href="{{route('user.profile.show', $user->id)}}" class="btn small btn-primary"><i class="fas fa-eye small"></i></a>
                                     <form method="post" action="{{route('users.destroy', $user->id)}}" enctype="multipart/form-data">
                                         @csrf
                                         @method('DELETE')

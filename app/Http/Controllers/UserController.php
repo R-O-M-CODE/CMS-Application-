@@ -42,6 +42,14 @@ class UserController extends Controller
 
 
     }
+    public function attach(User $user){
+        $user->roles()->attach(request('role'));
+        return back();
+    }
+    public function detach(User $user){
+        $user->roles()->detach(request('role'));
+        return back();
+    }
     public function destroy(User $user){
 
         $user->delete();
@@ -52,4 +60,5 @@ class UserController extends Controller
 
 
     }
+
 }
